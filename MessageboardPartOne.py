@@ -30,8 +30,16 @@ class MessageHandler(BaseHTTPRequestHandler):
         data = self.rfile.read(length).decode()
 
         # 3. Extract the "message" field from the request data.
+            # Mike - my original answer is below on line 40, and the correct answer is on line 41.  
+            #        So I am looking for a good book for either a reference or beginner book (I don't care 
+            #        what it's called), that can explain the little nuances in python.  I could not find 
+            #        any reference online or in the few books that I looked at that showed parse_qs() with a "["xyz"][0]"
+            #        on the end and what that references to.  Hope that makes sense. But that is the type of thing 
+            #        that I am taking HOURS trying to find and getting farther and farther behind.  Thanks again for any suggestions.
+            
         # message = parse_qs(data) === this is my original answer
         message = parse_qs(data)["message"][0]
+        
         # Send the "message" field back as the response.
         self.send_response(200)
         self.send_header('Content-type', 'text/plain; charset=utf-8')
